@@ -5,7 +5,16 @@ import open3d as o3d
 import os
 
 
-def create_cam(RT=np.eye(4), size_multiplier=1):
+def create_cam(RT: np.array = np.eye(4), size_multiplier: float = 1) -> o3d.geometry.TriangleMesh:
+    """Create 3d arrow, to visualize the camera
+
+    Args:
+        RT (np.array, optional): 4x4 camera's RT matrix. Defaults to np.eye(4).
+        size_multiplier (float, optional): in case if camera looks small. Defaults to 1.
+
+    Returns:
+        o3d.geometry.TriangleMesh: 3d camera
+    """
     camera_cone = o3d.geometry.TriangleMesh()
     camera_cone = camera_cone.create_arrow(cylinder_radius=1.0 * size_multiplier,
                                            cone_radius=1.5 * size_multiplier,
@@ -21,7 +30,18 @@ def create_cam(RT=np.eye(4), size_multiplier=1):
     return camera_cone
 
 
-def visualize_cams_rt(cam_dir, mesh_path, out_mesh_path, size_multiplier=5):
+def visualize_cams_rt(cam_dir: str,
+                      mesh_path: str,
+                      out_mesh_path: str,
+                      size_multiplier: float = 5):
+    """Visualize all cameras in an input mesh
+
+    Args:
+        cam_dir (str): path to camera files folder
+        mesh_path (str): path to input mesh
+        out_mesh_path (str): path to output mesh
+        size_multiplier (float, optional): in case if cameras looks small. Defaults to 5.
+    """
     mesh_with_cameras = o3d.geometry.TriangleMesh()
 
     cam_files = os.listdir(cam_dir)

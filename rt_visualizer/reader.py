@@ -1,7 +1,15 @@
 import numpy as np
 
 
-def read_cam_txt(filepath):
+def read_cam_txt(filepath: str) -> np.array:
+    """Read a camera file and return the cameras RT matrix
+
+    Args:
+        filepath (str): path to a camera file
+
+    Returns:
+        np.array: 4x4 RT matrix
+    """
     RT = np.eye(4)
     with open(filepath) as f:
         extrinsics_str, intrinsics_str = f.read().split("\n")
