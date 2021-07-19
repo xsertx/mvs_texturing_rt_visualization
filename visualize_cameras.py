@@ -5,10 +5,10 @@ import argparse
 parser = argparse.ArgumentParser(
     description='Process inputs for camera visualization.')
 
-parser.add_argument('-cams_dir',  type=str, help='path to cameras file')
+parser.add_argument('-cams_dir', type=str, help='path to cameras file')
 parser.add_argument('-mesh',  type=str, help='path to mesh path')
 parser.add_argument('-out_mesh',  type=str,
-                    help='path to mesh with visualized cameras')
+                    help='path to output mesh with visualized cameras')
 
 args = parser.parse_args()
 

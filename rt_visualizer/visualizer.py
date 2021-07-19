@@ -1,4 +1,3 @@
-# from rt_visualiezr import read_cam_txt
 from rt_visualizer import read_cam_txt
 import numpy as np
 import open3d as o3d
@@ -10,16 +9,23 @@ def create_cam(RT: np.array = np.eye(4), size_multiplier: float = 1) -> o3d.geom
 
     Args:
         RT (np.array, optional): 4x4 camera's RT matrix. Defaults to np.eye(4).
-        size_multiplier (float, optional): in case if camera looks small. Defaults to 1.
+        size_multiplier (float, optional): in case if camera looks small.
+        Defaults to 1.
 
     Returns:
         o3d.geometry.TriangleMesh: 3d camera
     """
     camera_cone = o3d.geometry.TriangleMesh()
-    camera_cone = camera_cone.create_arrow(cylinder_radius=1.0 * size_multiplier,
-                                           cone_radius=1.5 * size_multiplier,
-                                           cylinder_height=5.0 * size_multiplier,
-                                           cone_height=4.0 * size_multiplier,
+
+    cylinder_radius = 1.0 * size_multiplier
+    cone_radius = 1.5 * size_multiplier
+    cylinder_height = 5.0 * size_multiplier
+    cone_height = 4.0 * size_multiplier
+
+    camera_cone = camera_cone.create_arrow(cylinder_radius=cylinder_radius,
+                                           cone_radius=cone_radius,
+                                           cylinder_height=cylinder_height,
+                                           cone_height=cone_height,
                                            resolution=10,
                                            cylinder_split=4,
                                            cone_split=1)
@@ -40,7 +46,8 @@ def visualize_cams_rt(cam_dir: str,
         cam_dir (str): path to camera files folder
         mesh_path (str): path to input mesh
         out_mesh_path (str): path to output mesh
-        size_multiplier (float, optional): in case if cameras looks small. Defaults to 5.
+        size_multiplier (float, optional): in case if cameras looks small.
+        Defaults to 5.
     """
     mesh_with_cameras = o3d.geometry.TriangleMesh()
 

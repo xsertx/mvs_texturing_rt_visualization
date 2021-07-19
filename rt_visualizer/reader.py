@@ -20,6 +20,5 @@ def read_cam_txt(filepath: str) -> np.array:
         R = R.reshape((3, 3))
         RT[:3, :3] = R
         RT[:3, 3] = T
-
-        intrinsics = [float(i) for i in intrinsics_str.split(" ")]
+        _ = [float(i) for i in intrinsics_str.split(" ")]
     return RT
